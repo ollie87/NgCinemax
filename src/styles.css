@@ -19,3 +19,11 @@
     color: white;
     background-color: #b71c1c
 }
+
+.container {
+    width: 85% !important;
+}
+
+.filter {
+    padding: 5px 55px;
+}
