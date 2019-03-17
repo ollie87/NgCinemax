@@ -10,6 +10,7 @@ import { SlidesComponent } from './landing-page/slides/slides.component';
 import { WeeklyBilboardsComponent } from './landing-page/weekly-bilboards/weekly-bilboards.component';
 import { PremieresComponent } from './landing-page/premieres/premieres.component';
 import { CarouselComponent } from './landing-page/carousel/carousel.component';
+import { LandingPageService } from './services/landing-page.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import { CarouselComponent } from './landing-page/carousel/carousel.component';
     CarouselComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
-  providers: [],
+  providers: [LandingPageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
