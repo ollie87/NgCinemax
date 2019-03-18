@@ -7,26 +7,34 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SocialNetwork } from './social-network';
 import { of } from 'rxjs';
 
-fdescribe('NavbarSocialComponent', () => {
+describe('NavbarSocialComponent', () => {
   let component: NavbarSocialComponent;
   let fixture: ComponentFixture<NavbarSocialComponent>;
   let service: LandingPageService;
   const mockResponse: SocialNetwork[] = [
     {
       nombre: 'Facebook',
-      url: 'https://www.facebook.com/mario.ollie'
+      url: 'https://www.facebook.com/mario.ollie',
+      clase: 'fab fa-facebook-f',
+      estado: true
     },
     {
       nombre: 'Twitter',
-      url: 'https://twitter.com/olliemario'
+      url: 'https://twitter.com/olliemario',
+      clase: 'fab fa-twitter',
+      estado: true
     },
     {
       nombre: 'Youtube',
-      url: 'https://www.youtube.com/channel/UCYwL090B9kRLmVb0uzdnENg?view_as=subscriber'
+      url: 'https://www.youtube.com/channel/UCYwL090B9kRLmVb0uzdnENg?view_as=subscriber',
+      clase: 'fab fa-youtube',
+      estado: true,
     },
     {
       nombre: 'Instagram',
-      url: 'https://www.instagram.com/?hl=es'
+      url: 'https://www.instagram.com/?hl=es',
+      clase: 'fab fa-instagram',
+      estado: true
     }
   ];
 
