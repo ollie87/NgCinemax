@@ -11,6 +11,7 @@ import { WeeklyBilboardsComponent } from './landing-page/weekly-bilboards/weekly
 import { PremieresComponent } from './landing-page/premieres/premieres.component';
 import { CarouselComponent } from './landing-page/carousel/carousel.component';
 import { LandingPageService } from './services/landing-page.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LandingPageService } from './services/landing-page.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule
   ],
   providers: [LandingPageService],
   bootstrap: [AppComponent]
