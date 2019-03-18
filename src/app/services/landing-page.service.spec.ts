@@ -4,26 +4,26 @@ import { LandingPageService } from './landing-page.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SocialNetwork } from '../landing-page/navbar-social/social-network';
 
-fdescribe('LandingPageService', () => {
+describe('LandingPageService', () => {
   let service: LandingPageService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let mockResponse: SocialNetwork[] = [
+  const mockResponse: SocialNetwork[] = [
     {
-      "nombre": "Facebook",
-      "url": "https://www.facebook.com/mario.ollie"
+      nombre: 'Facebook',
+      url: 'https://www.facebook.com/mario.ollie'
     },
     {
-      "nombre": "Twitter",
-      "url": "https://twitter.com/olliemario"
+      nombre: 'Twitter',
+      url: 'https://twitter.com/olliemario'
     },
     {
-      "nombre": "Youtube",
-      "url": "https://www.youtube.com/channel/UCYwL090B9kRLmVb0uzdnENg?view_as=subscriber"
+      nombre: 'Youtube',
+      url: 'https://www.youtube.com/channel/UCYwL090B9kRLmVb0uzdnENg?view_as=subscriber'
     },
     {
-      "nombre": "Instagram",
-      "url": "https://www.instagram.com/?hl=es"
+      nombre: 'Instagram',
+      url: 'https://www.instagram.com/?hl=es'
     }
   ];
 
@@ -33,8 +33,8 @@ fdescribe('LandingPageService', () => {
       imports: [HttpClientTestingModule]
     });
     injector = getTestBed();
-    httpMock = injector.get(HttpTestingController)
-    service = TestBed.get(LandingPageService)
+    httpMock = injector.get(HttpTestingController);
+    service = TestBed.get(LandingPageService);
   });
 
   it('debe crear el servicio', () => {
