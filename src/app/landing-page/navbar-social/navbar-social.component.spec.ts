@@ -69,4 +69,12 @@ describe('NavbarSocialComponent', () => {
     component.ngOnInit();
     expect(component.socialNetworks).toEqual(mockResponse);
   });
+
+  it('Debe llamar getSocialNetworks en el ngOnInit()', () => {
+    spyOn(component, 'getSocialNetworks').and.callThrough();
+    spyOn(service, 'getSocialNetworks').and.returnValue(of(mockResponse));
+
+    component.ngOnInit();
+    expect(component.getSocialNetworks).toHaveBeenCalled();
+  });
 });

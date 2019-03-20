@@ -18,7 +18,7 @@ export class NavbarSocialComponent implements OnInit {
   getSocialNetworks() {
     this._landingService.getSocialNetworks().subscribe((redes) => {
       this.socialNetworks = redes;
-      console.log(this.socialNetworks)
+      console.log(this.socialNetworks);
     });
   }
 }
