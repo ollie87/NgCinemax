@@ -82,6 +82,7 @@
                         "styles": [
                             "src/styles.css"
                         ],
+                        "sourceMap": true,
                         "scripts": [],
                         "assets": [
                             "src/favicon.ico",
