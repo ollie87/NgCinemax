@@ -4,7 +4,7 @@ import { LandingPageService } from './landing-page.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SocialNetwork } from '../landing-page/navbar-social/social-network';
 
-fdescribe('LandingPageService', () => {
+describe('LandingPageService', () => {
   let service: LandingPageService;
   let injector: TestBed;
   let httpMock: HttpTestingController;

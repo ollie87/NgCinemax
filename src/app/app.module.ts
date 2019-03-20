@@ -12,6 +12,8 @@ import { PremieresComponent } from './landing-page/premieres/premieres.component
 import { CarouselComponent } from './landing-page/carousel/carousel.component';
 import { LandingPageService } from './services/landing-page.service';
 import { HttpClientModule } from '@angular/common/http';
+import 'jquery';
+import 'materialize-css';
 
 @NgModule({
   declarations: [
