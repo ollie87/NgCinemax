@@ -5,10 +5,13 @@ module.exports = function(config) {
     config.set({
         basePath: '',
         files: [
-            '../node_modules/jquery/dist/jquery.min.js'
+            'node_modules/jquery/dist/jquery.min.js',
+            { pattern: '../node_modules/jquery/dist/jquery.min.js', included: false, watched: false },
+            { pattern: '../node_modules/materialize-css/dist/js/materialize.js', watched: false },
         ],
-        frameworks: ['jasmine', '@angular-devkit/build-angular'],
+        frameworks: ['jasmine', '@angular-devkit/build-angular', 'jquery-3.3.1'],
         plugins: [
+            require('karma-jquery'),
             require('karma-jasmine'),
             require('karma-chrome-launcher'),
             require('karma-jasmine-html-reporter'),
