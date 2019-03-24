@@ -145,7 +145,7 @@ describe('LandingPageService', () => {
       nombre: 'La mujer maravilla',
       trailer: 'https://www.youtube.com/watch?v=DYhqqzo2xOI'
     }
-  ]
+  ];
 
 
   beforeEach(() => {
