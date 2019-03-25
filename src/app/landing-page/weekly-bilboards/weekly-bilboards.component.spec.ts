@@ -7,7 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
 import { Movie } from 'src/app/models/movie';
 
-fdescribe('WeeklyBilboardsComponent', () => {
+describe('WeeklyBilboardsComponent', () => {
   let component: WeeklyBilboardsComponent;
   let fixture: ComponentFixture<WeeklyBilboardsComponent>;
   let service: LandingPageService;
@@ -120,7 +120,7 @@ fdescribe('WeeklyBilboardsComponent', () => {
       nombre: 'La mujer maravilla',
       trailer: 'https://www.youtube.com/watch?v=DYhqqzo2xOI'
     }
-  ]
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
