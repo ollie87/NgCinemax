@@ -3,19 +3,15 @@
     <div class="col s12 m3 l3">
         <select class="browser-default" [(ngModel)]="formFilter.date">
           <option value="" selected>Fecha</option>
-          <option value="{{fecha}}" *ngFor="let fecha of fechas">
+          <option [value]="fecha" *ngFor="let fecha of fechas">
             {{ fecha | date: 'longDate'}}
           </option>
         </select>
     </div>
     <div class="col s12 m3 l3">
-        <select>
+        <select class="browser-default">
         <option value="" selected>Peliculas</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
+        <option [value]="film.nombre" *ngFor="let film of films">{{ film.nombre }}</option>
       </select>
     </div>
     <div class="col s12 m3 l3">
