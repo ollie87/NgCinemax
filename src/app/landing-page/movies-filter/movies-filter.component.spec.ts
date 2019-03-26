@@ -1,14 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MoviesFilterComponent } from './movies-filter.component';
+import { FormsModule } from '@angular/forms';
 
-describe('MoviesFilterComponent', () => {
+fdescribe('MoviesFilterComponent', () => {
   let component: MoviesFilterComponent;
   let fixture: ComponentFixture<MoviesFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MoviesFilterComponent ]
+      declarations: [ MoviesFilterComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
@@ -19,7 +21,18 @@ describe('MoviesFilterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debe ser creado', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('debe generar los 8 items de fecha requeridos', () => {
+    component.ngOnInit();
+
+    for (let i = 0; i <= 7; i++) {
+      const date: Date = new Date();
+      date.setDate(date.getDate() + i);
+
+      expect(component.fechas[i].toDateString()).toEqual(date.toDateString());
+    }
   });
 });

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarSocialComponent } from './landing-page/navbar-social/navbar-social.component';
@@ -14,6 +14,7 @@ import { LandingPageService } from './services/landing-page.service';
 import { HttpClientModule } from '@angular/common/http';
 import 'jquery';
 import 'materialize-css';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import 'materialize-css';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [LandingPageService],
   bootstrap: [AppComponent]

@@ -1,14 +1,12 @@
 <div class="row blue-grey lighten-4 filter">
     <h6 class="left-align">Compra tus entradas online</h6>
     <div class="col s12 m3 l3">
-        <select>
-        <option value="" selected>Fecha</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-      </select>
+        <select class="browser-default" [(ngModel)]="formFilter.date">
+          <option value="" selected>Fecha</option>
+          <option value="{{fecha}}" *ngFor="let fecha of fechas">
+            {{ fecha | date: 'longDate'}}
+          </option>
+        </select>
     </div>
     <div class="col s12 m3 l3">
         <select>

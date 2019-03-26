@@ -9,6 +9,7 @@ import { WeeklyBilboardsComponent } from './weekly-bilboards/weekly-bilboards.co
 import { PremieresComponent } from './premieres/premieres.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('LandingPageComponent', () => {
   let component: LandingPageComponent;
@@ -24,7 +25,7 @@ describe('LandingPageComponent', () => {
         WeeklyBilboardsComponent,
         PremieresComponent,
         CarouselComponent ],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule, FormsModule]
     })
     .compileComponents();
   }));
