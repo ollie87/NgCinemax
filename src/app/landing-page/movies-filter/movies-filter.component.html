@@ -1,43 +1,29 @@
 <div class="row blue-grey lighten-4 filter">
     <h6 class="left-align">Compra tus entradas online</h6>
     <div class="col s12 m3 l3">
-        <select>
-        <option value="" selected>Fecha</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
+        <select class="browser-default">
+          <option selected>Fecha</option>
+          <option [value]="fecha" *ngFor="let fecha of fechas">
+            {{ fecha | date: 'longDate'}}
+          </option>
+        </select>
+    </div>
+    <div class="col s12 m3 l3">
+        <select class="browser-default">
+        <option selected>Peliculas</option>
+        <option [value]="film.nombre" *ngFor="let film of films">{{ film.nombre }}</option>
       </select>
     </div>
     <div class="col s12 m3 l3">
-        <select>
-        <option value="" selected>Peliculas</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
+        <select class="browser-default">
+        <option>Formato</option>
+        <option [value]="formato" *ngFor="let formato of _landingService.formatos">{{ formato }}</option>
       </select>
     </div>
     <div class="col s12 m3 l3">
-        <select>
-        <option value="" selected>Formato</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-      </select>
-    </div>
-    <div class="col s12 m3 l3">
-        <select>
-        <option value="" selected>Hora</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
-        <option>ABC</option>
+        <select class="browser-default">
+        <option selected>Hora</option>
+        <option [value]="hora" *ngFor="let hora of _landingService.horas">{{ hora }}</option>
       </select>
     </div>
 </div>

@@ -1,18 +1,42 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, getTestBed } from '@angular/core/testing';
 
-import { MoviesFilterComponent } from './movies-filter.component';
-import { FormsModule } from '@angular/forms';
-import { LandingPageService } from 'src/app/services/landing-page.service';
-import { Movie } from 'src/app/models/movie';
-import { of } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { LandingPageService } from './landing-page.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { SocialNetwork } from '../landing-page/navbar-social/social-network';
+import { Movie } from '../models/movie';
 
-describe('MoviesFilterComponent', () => {
-  let component: MoviesFilterComponent;
-  let fixture: ComponentFixture<MoviesFilterComponent>;
+describe('LandingPageService', () => {
   let service: LandingPageService;
-  const mockResponseFilms: Movie[] = [
+  let injector: TestBed;
+  let httpMock: HttpTestingController;
+  const mockResponseSocialNetwork: SocialNetwork[] = [
+    {
+      nombre: 'Facebook',
+      url: 'https://www.facebook.com/mario.ollie',
+      clase: 'fab fa-facebook-f',
+      estado: true
+    },
+    {
+      nombre: 'Twitter',
+      url: 'https://twitter.com/olliemario',
+      clase: 'fab fa-twitter',
+      estado: true
+    },
+    {
+      nombre: 'Youtube',
+      url: 'https://www.youtube.com/channel/UCYwL090B9kRLmVb0uzdnENg?view_as=subscriber',
+      clase: 'fab fa-youtube',
+      estado: true,
+    },
+    {
+      nombre: 'Instagram',
+      url: 'https://www.instagram.com/?hl=es',
+      clase: 'fab fa-instagram',
+      estado: true
+    }
+  ];
+
+  const mockResponseFilms: Movie[] =[
     {
       cartelera: true,
       descripcion: 'Superman (Henry Cavill) se ha convertido en la figura más controvertida del mundo. Mientras que muchos siguen creyendo que es un emblema de esperanza, otro gran número de personas lo consideran una amenaza para la humanidad. Para el influyente Bruce Wayne (Ben Affleck), Superman es claramente un peligro para la sociedad, su poder resulta imprudente y alejado de la mano del gobierno. Por eso, ante el temor de las acciones que pueda llevar a cabo un superhéroe con unos poderes casi divinos, decide ponerse la máscara y la capa para poner a raya al superhéroe de Metrópolis. Mientras que la opinión pública debate sobre el interrogante de cuál es realmente el héroe que necesitan, el Hombre de Acero y Batman, enfrentados entre sí, se sumergen en una contienda el uno contra el otro. La rivalidad entre ellos está alimentada por el rencor y la venganza, y nada puede disuadirlos de librar esta guerra. Hostigados por el multimillonario Lex Luthor (Jesse Eisenberg), Batman y Superman se ven las caras en una lucha sin precedentes. Pero las cosas se complican cuando una nueva y peligrosa amenaza pronto cobra fuerza, poniendo a toda la humanidad en el mayor peligro que nunca se haya conocido antes. Esta nueva y oscura amenaza, que surge con la figura de un tercer hombre con poderes superlativos llamado Doomsday, puede poner en serio peligro al mundo y causar la destrucción total. Será entonces cuando el Último Hijo de Krypton y el Caballero Oscuro unan sus fuerzas con Wonder Woman (Gal Gadot) para enfrentarse todos juntos a esta amenazante nueva máquina de matar.',
@@ -123,50 +147,64 @@ describe('MoviesFilterComponent', () => {
     }
   ];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MoviesFilterComponent ],
-      imports: [ HttpClientTestingModule, FormsModule ],
-      providers: [ LandingPageService ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
-  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MoviesFilterComponent);
-    component = fixture.componentInstance;
-    service = component._landingService;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
+    injector = getTestBed();
+    httpMock = injector.get(HttpTestingController);
+    service = TestBed.get(LandingPageService);
   });
 
-  it('debe ser creado', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('debe generar los 8 items de fecha requeridos', () => {
-    component.ngOnInit();
-
-    for (let i = 0; i <= 7; i++) {
-      const date: Date = new Date();
-      date.setDate(date.getDate() + i);
-
-      expect(component.fechas[i].toDateString()).toEqual(date.toDateString());
-    }
-  });
-
-  it('debe injectar el  servicio', () => {
+  it('debe crear el servicio', () => {
     expect(service).toBeTruthy();
   });
 
-  it('debe llamar a getMovies de _landingPageService', () => {
-    const getFilms = spyOn(service, 'getMovies').and.returnValue(of(mockResponseFilms));
-    component.ngOnInit();
+  it('Debe llamar el metodo getSocialNetworks y retornar las rede sociales', () => {
+    service.getSocialNetworks().subscribe((redes) => {
+      expect(redes.length).toBe(4);
+      expect(redes).toEqual(mockResponseSocialNetwork);
+      console.log(redes);
+      console.log(mockResponseSocialNetwork);
+    });
 
-    expect(getFilms).toHaveBeenCalled();
+    const req = httpMock.expectOne('https://cinemax-f5dad.firebaseio.com/RedesSociales.json');
 
-    for (let i = 0; i<component.films.length; i++) {
-      expect(component.films[i].cartelera).toBeTruthy();
+    expect(req.request.method).toBe('GET');
+
+    req.flush(mockResponseSocialNetwork);
+  });
+
+  it('Debe llamar el metodo getMovies y retornar las películas', () => {
+    service.getMovies().subscribe((films) => {
+      const premieres = films.filter(film => !film.cartelera);
+      const billboard = films.filter(film => film.cartelera);
+
+      expect(premieres.length).toBeGreaterThanOrEqual(6);
+      expect(billboard.length).toBeGreaterThanOrEqual(6);
+    });
+
+    const req = httpMock.expectOne('https://cinemax-f5dad.firebaseio.com/Peliculas.json');
+
+    expect(req.request.method).toBe('GET');
+
+    req.flush(mockResponseFilms);
+  });
+
+  it('la variable formatos debe contener 4 opciones', ()=> {
+    expect(service.formatos.length).toEqual(4);
+  });
+
+  it('la variable horas debe contener 5 opciones', () => {
+    const testHoras: string[] = [];
+    for (let i = 2; i <= 10; i = i + 2) {
+      const hora = `${i}:00pm`;
+      testHoras.push(hora);
+    }
+    expect(service.horas.length).toEqual(5);
+    for (let j = 0; j <= service.horas.length; j++) {
+      expect(service.horas[j]).toEqual(testHoras[j]);
     }
   });
 });
