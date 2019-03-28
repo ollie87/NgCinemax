@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
-fdescribe('MoviesFilterComponent', () => {
+describe('MoviesFilterComponent', () => {
   let component: MoviesFilterComponent;
   let fixture: ComponentFixture<MoviesFilterComponent>;
   let service: LandingPageService;

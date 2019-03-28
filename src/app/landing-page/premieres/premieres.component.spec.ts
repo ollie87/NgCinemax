@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
-fdescribe('PremieresComponent', () => {
+describe('PremieresComponent', () => {
   let component: PremieresComponent;
   let fixture: ComponentFixture<PremieresComponent>;
   let service: LandingPageService;

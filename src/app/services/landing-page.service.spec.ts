@@ -191,4 +191,20 @@ describe('LandingPageService', () => {
 
     req.flush(mockResponseFilms);
   });
+
+  it('la variable formatos debe contener 4 opciones', ()=> {
+    expect(service.formatos.length).toEqual(4);
+  });
+
+  it('la variable horas debe contener 5 opciones', () => {
+    const testHoras: string[] = [];
+    for (let i = 2; i <= 10; i = i + 2) {
+      const hora = `${i}:00pm`;
+      testHoras.push(hora);
+    }
+    expect(service.horas.length).toEqual(5);
+    for (let j = 0; j <= service.horas.length; j++) {
+      expect(service.horas[j]).toEqual(testHoras[j]);
+    }
+  });
 });
